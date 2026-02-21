@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Wellness Break — Settings</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="settings.css">
+</head>
+<body>
+
+<div id="popup">
+  <header>
+    <div class="logo">🌿</div>
+    <div>
+      <h1>Digital Wellness</h1>
+      <p class="header-sub">Break Reminder</p>
+    </div>
+  </header>
+
+  <!-- Status pill -->
+  <div class="status-bar">
+    <span class="dot" id="statusDot"></span>
+    <span id="statusText">Loading…</span>
+    <span class="next-break" id="nextBreak"></span>
+  </div>
+
+  <!-- Settings form -->
+  <div class="section">
+    <label class="field-label">Work interval</label>
+    <div class="slider-row">
+      <input type="range" id="workSlider" min="1" max="90" step="1" value="25">
+      <span class="slider-val" id="workVal">25 min</span>
+    </div>
+
+    <label class="field-label" style="margin-top:16px;">Break duration</label>
+    <div class="slider-row">
+      <input type="range" id="breakSlider" min="10" max="120" step="5" value="20">
+      <span class="slider-val" id="breakVal">20 sec</span>
+    </div>
+  </div>
+
+  <div class="actions">
+    <button class="btn btn-primary" id="saveBtn">Save & Restart</button>
+    <button class="btn btn-pause" id="pauseBtn">Pause</button>
+  </div>
+
+  <p class="hint" id="hint"></p>
+</div>
+
+<script src="settings.js"></script>
+</body>
+</html>

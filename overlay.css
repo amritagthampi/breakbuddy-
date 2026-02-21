@@ -1,0 +1,301 @@
+/* overlay.css — Digital Wellness Break v2.0 */
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --bg: #0a0f1a;
+  --card-bg: rgba(13, 20, 35, 0.85);
+  --card-border: rgba(255,255,255,0.07);
+  --text-primary: #f0ede8;
+  --text-secondary: rgba(240,237,232,0.5);
+  --accent: #7eb8d4;
+  --accent-glow: rgba(126,184,212,0.3);
+  --green: #6fcf97;
+  --green-glow: rgba(111,207,151,0.25);
+  --font-display: 'DM Serif Display', Georgia, serif;
+  --font-body: 'DM Sans', sans-serif;
+}
+
+html, body {
+  width: 100%; height: 100%;
+  overflow: hidden;
+  background: transparent;
+}
+
+/* ── Overlay backdrop ── */
+#overlay {
+  position: fixed; inset: 0;
+  background: var(--bg);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  font-family: var(--font-body);
+}
+
+/* ── Ambient orbs ── */
+.orb {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(80px);
+  opacity: 0.35;
+  animation: drift 12s ease-in-out infinite alternate;
+}
+.orb-1 {
+  width: 500px; height: 500px;
+  background: #1a3a5c;
+  top: -150px; left: -150px;
+  animation-delay: 0s;
+}
+.orb-2 {
+  width: 400px; height: 400px;
+  background: #0d3d3a;
+  bottom: -100px; right: -100px;
+  animation-delay: -4s;
+}
+.orb-3 {
+  width: 300px; height: 300px;
+  background: #2a1a4a;
+  top: 50%; left: 50%;
+  transform: translate(-50%, -50%);
+  animation-delay: -8s;
+}
+
+@keyframes drift {
+  0%   { transform: translate(0, 0) scale(1); }
+  100% { transform: translate(40px, 30px) scale(1.1); }
+}
+
+/* ── Card ── */
+.card {
+  position: relative;
+  width: min(520px, 90vw);
+  background: var(--card-bg);
+  border: 1px solid var(--card-border);
+  border-radius: 24px;
+  padding: 52px 48px;
+  backdrop-filter: blur(24px);
+  box-shadow:
+    0 0 0 1px rgba(255,255,255,0.04),
+    0 32px 80px rgba(0,0,0,0.6),
+    0 0 60px rgba(126,184,212,0.05);
+  text-align: center;
+  animation: cardIn 0.6s cubic-bezier(.22,1,.36,1) both;
+}
+
+@keyframes cardIn {
+  from { opacity: 0; transform: translateY(24px) scale(0.97); }
+  to   { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+/* ── Screens ── */
+.screen {
+  display: none;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+  animation: fadeUp 0.4s cubic-bezier(.22,1,.36,1) both;
+}
+.screen.active { display: flex; }
+
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(12px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* ── Typography ── */
+.eyebrow {
+  font-size: 11px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--accent);
+  font-weight: 500;
+}
+
+.headline {
+  font-family: var(--font-display);
+  font-size: 44px;
+  line-height: 1.1;
+  color: var(--text-primary);
+}
+.headline em {
+  font-style: italic;
+  color: var(--accent);
+}
+
+.headline-sm {
+  font-family: var(--font-display);
+  font-size: 32px;
+  color: var(--text-primary);
+}
+
+.subtext {
+  font-size: 15px;
+  color: var(--text-secondary);
+  line-height: 1.6;
+  max-width: 340px;
+}
+
+/* ── Buttons ── */
+.actions {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  width: 100%;
+  margin-top: 8px;
+}
+
+.btn {
+  padding: 14px 28px;
+  border-radius: 12px;
+  font-family: var(--font-body);
+  font-size: 15px;
+  font-weight: 500;
+  cursor: pointer;
+  border: none;
+  transition: all 0.2s ease;
+  letter-spacing: 0.01em;
+}
+
+.btn-primary {
+  background: var(--accent);
+  color: #0a0f1a;
+  box-shadow: 0 0 20px var(--accent-glow);
+}
+.btn-primary:hover {
+  background: #9ecee4;
+  box-shadow: 0 0 32px rgba(126,184,212,0.5);
+  transform: translateY(-1px);
+}
+
+.btn-ghost {
+  background: transparent;
+  color: var(--text-secondary);
+  border: 1px solid rgba(255,255,255,0.1);
+}
+.btn-ghost:hover {
+  background: rgba(255,255,255,0.05);
+  color: var(--text-primary);
+}
+
+/* ── Breathing Ring ── */
+.breath-ring-wrap {
+  margin: 8px 0;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.breath-ring {
+  width: 180px;
+  height: 180px;
+  border-radius: 50%;
+  border: 2px solid rgba(126,184,212,0.2);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  transition: transform 4s ease-in-out, box-shadow 4s ease-in-out;
+  box-shadow: 0 0 20px rgba(126,184,212,0.1);
+}
+
+.breath-ring::before {
+  content: '';
+  position: absolute;
+  inset: -6px;
+  border-radius: 50%;
+  border: 2px solid var(--accent);
+  opacity: 0.4;
+  transition: opacity 0.5s;
+}
+
+.breath-ring.inhale {
+  transform: scale(1.35);
+  box-shadow: 0 0 50px var(--accent-glow);
+}
+.breath-ring.inhale::before { opacity: 1; }
+
+.breath-ring.hold {
+  transform: scale(1.35);
+  box-shadow: 0 0 50px var(--green-glow);
+  border-color: rgba(111,207,151,0.3);
+}
+.breath-ring.hold::before { border-color: var(--green); opacity: 0.8; }
+
+.breath-ring.exhale {
+  transform: scale(1);
+  box-shadow: 0 0 10px rgba(126,184,212,0.05);
+}
+
+.breath-ring-inner {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  background: rgba(126,184,212,0.08);
+  border: 1px solid rgba(126,184,212,0.15);
+}
+
+#breath-count {
+  font-family: var(--font-display);
+  font-size: 36px;
+  color: var(--text-primary);
+  line-height: 1;
+}
+
+.breath-instruction {
+  font-size: 13px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--accent);
+  font-weight: 500;
+  min-height: 20px;
+  transition: opacity 0.3s;
+}
+
+/* ── Progress bar ── */
+.progress-bar-wrap {
+  width: 100%;
+  height: 3px;
+  background: rgba(255,255,255,0.06);
+  border-radius: 2px;
+  overflow: hidden;
+  margin-top: 8px;
+}
+.progress-bar {
+  height: 100%;
+  width: 0%;
+  background: linear-gradient(90deg, var(--accent), var(--green));
+  border-radius: 2px;
+  transition: width 0.3s ease;
+}
+
+.round-label {
+  font-size: 12px;
+  color: var(--text-secondary);
+  letter-spacing: 0.06em;
+}
+
+/* ── Done screen checkmark ── */
+.checkmark {
+  width: 72px;
+  height: 72px;
+  border-radius: 50%;
+  background: rgba(111,207,151,0.12);
+  border: 1.5px solid var(--green);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 28px;
+  color: var(--green);
+  box-shadow: 0 0 30px var(--green-glow);
+  animation: popIn 0.5s cubic-bezier(.22,1,.36,1) both 0.1s;
+}
+
+@keyframes popIn {
+  from { opacity: 0; transform: scale(0.6); }
+  to   { opacity: 1; transform: scale(1); }
+}

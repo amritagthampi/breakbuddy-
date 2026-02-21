@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Wellness Break</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="overlay.css">
+</head>
+<body>
+
+<div id="overlay">
+  <!-- Ambient background orbs -->
+  <div class="orb orb-1"></div>
+  <div class="orb orb-2"></div>
+  <div class="orb orb-3"></div>
+
+  <!-- Main card -->
+  <div class="card" id="card">
+
+    <!-- SCREEN 1: Intro -->
+    <div class="screen active" id="screen-intro">
+      <div class="eyebrow">Time for a mindful pause</div>
+      <h1 class="headline">Take a <em>breath.</em></h1>
+      <p class="subtext">A short breathing exercise will help you reset and refocus.</p>
+      <div class="actions">
+        <button class="btn btn-primary" id="startBtn">Begin Exercise</button>
+        <button class="btn btn-ghost" id="skipBtn">Skip this time</button>
+      </div>
+    </div>
+
+    <!-- SCREEN 2: Breathing exercise -->
+    <div class="screen" id="screen-breathe">
+      <div class="eyebrow" id="phase-label">Get ready…</div>
+      <div class="breath-ring-wrap">
+        <div class="breath-ring" id="breathRing">
+          <div class="breath-ring-inner">
+            <span id="breath-count">4</span>
+          </div>
+        </div>
+      </div>
+      <p class="breath-instruction" id="breathInstruction">Follow the circle</p>
+      <div class="progress-bar-wrap">
+        <div class="progress-bar" id="progressBar"></div>
+      </div>
+      <p class="round-label" id="roundLabel">Round 1 of 3</p>
+    </div>
+
+    <!-- SCREEN 3: Complete -->
+    <div class="screen" id="screen-done">
+      <div class="checkmark">✓</div>
+      <h2 class="headline-sm">Well done.</h2>
+      <p class="subtext">You completed your break. Time to get back to it.</p>
+      <button class="btn btn-primary" id="doneBtn">Continue</button>
+    </div>
+
+  </div>
+</div>
+
+<script src="overlay.js"></script>
+</body>
+</html>

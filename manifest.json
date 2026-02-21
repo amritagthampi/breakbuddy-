@@ -1,0 +1,38 @@
+{
+    "manifest_version": 3,
+    "name": "Digital Wellness Break",
+    "version": "2.0",
+    "description": "Mindful break reminders to keep you focused and healthy.",
+    "permissions": [
+        "storage",
+        "alarms",
+        "tabs"
+    ],
+    "background": {
+        "service_worker": "background.js"
+    },
+    "content_scripts": [
+        {
+            "matches": ["<all_urls>"],
+            "js": ["content.js"],
+            "run_at": "document_idle"
+        }
+    ],
+    "web_accessible_resources": [
+        {
+            "resources": [
+                "overlay.html",
+                "overlay.css",
+                "overlay.js",
+                "settings.html",
+                "settings.css",
+                "settings.js"
+            ],
+            "matches": ["<all_urls>"]
+        }
+    ],
+    "action": {
+        "default_popup": "settings.html",
+        "default_title": "Digital Wellness Break"
+    }
+}
